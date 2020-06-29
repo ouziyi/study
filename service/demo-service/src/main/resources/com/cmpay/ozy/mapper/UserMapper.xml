@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmpay.ozy.dao.IUserDao" >
+
+    <resultMap id="BaseResultMap" type="com.cmpay.ozy.entity.UserDO" >
+        <id column="UserID" property="userid" jdbcType="INTEGER" />
+        <result column="User_Name" property="userName" jdbcType="VARCHAR" />
+        <result column="User_Pwd" property="userPwd" jdbcType="VARCHAR" />
+        <result column="User_Department" property="userDepartment" jdbcType="VARCHAR" />
+        <result column="User_position" property="userPosition" jdbcType="VARCHAR" />
+        <result column="User_Email" property="userEmail" jdbcType="VARCHAR" />
+        <result column="User_Phone" property="userPhone" jdbcType="VARCHAR" />
+        <result column="User_status" property="userStatus" jdbcType="VARCHAR" />
+        <result column="User_Create_Date" property="userCreateDate" jdbcType="TIMESTAMP" />
+        <result column="User_Create_By" property="userCreateBy" jdbcType="VARCHAR" />
+        <result column="User_Update_By" property="userUpdateBy" jdbcType="VARCHAR" />
+        <result column="User_Update_Date" property="userUpdateDate" jdbcType="TIMESTAMP" />
+        <result column="User_Is_Use" property="userIsUse" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        UserID, User_Name, User_Pwd, User_Department, User_position, User_Email, User_Phone, 
+        User_status, User_Create_Date, User_Create_By, User_Update_By, User_Update_Date, 
+        User_Is_Use
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tuser
+        where UserID = #{userid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        delete from tuser
+        where UserID = #{userid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.cmpay.ozy.entity.UserDO" >
+        insert into tuser
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userid != null" >
+                UserID,
+            </if>
+            <if test="userName != null" >
+                User_Name,
+            </if>
+            <if test="userPwd != null" >
+                User_Pwd,
+            </if>
+            <if test="userDepartment != null" >
+                User_Department,
+            </if>
+            <if test="userPosition != null" >
+                User_position,
+            </if>
+            <if test="userEmail != null" >
+                User_Email,
+            </if>
+            <if test="userPhone != null" >
+                User_Phone,
+            </if>
+            <if test="userStatus != null" >
+                User_status,
+            </if>
+            <if test="userCreateDate != null" >
+                User_Create_Date,
+            </if>
+            <if test="userCreateBy != null" >
+                User_Create_By,
+            </if>
+            <if test="userUpdateBy != null" >
+                User_Update_By,
+            </if>
+            <if test="userUpdateDate != null" >
+                User_Update_Date,
+            </if>
+            <if test="userIsUse != null" >
+                User_Is_Use,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userid != null" >
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null" >
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPwd != null" >
+                #{userPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="userDepartment != null" >
+                #{userDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="userPosition != null" >
+                #{userPosition,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null" >
+                #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null" >
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null" >
+                #{userStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="userCreateDate != null" >
+                #{userCreateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userCreateBy != null" >
+                #{userCreateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="userUpdateBy != null" >
+                #{userUpdateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="userUpdateDate != null" >
+                #{userUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userIsUse != null" >
+                #{userIsUse,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.cmpay.ozy.entity.UserDO" >
+        update tuser
+        <set >
+            <if test="userName != null" >
+                User_Name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPwd != null" >
+                User_Pwd = #{userPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="userDepartment != null" >
+                User_Department = #{userDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="userPosition != null" >
+                User_position = #{userPosition,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null" >
+                User_Email = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null" >
+                User_Phone = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null" >
+                User_status = #{userStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="userCreateDate != null" >
+                User_Create_Date = #{userCreateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userCreateBy != null" >
+                User_Create_By = #{userCreateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="userUpdateBy != null" >
+                User_Update_By = #{userUpdateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="userUpdateDate != null" >
+                User_Update_Date = #{userUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userIsUse != null" >
+                User_Is_Use = #{userIsUse,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where UserID = #{userid,jdbcType=INTEGER}
+    </update>
+
+    <select id="find" resultMap="BaseResultMap" parameterType="com.cmpay.ozy.entity.UserDO" >
+        select 
+        <include refid="Base_Column_List" />
+        from tuser
+        <where >
+            <if test="userid != null" >
+                and UserID = #{userid,jdbcType=INTEGER}
+            </if>
+            <if test="userName != null" >
+                and User_Name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="userPwd != null" >
+                and User_Pwd = #{userPwd,jdbcType=VARCHAR}
+            </if>
+            <if test="userDepartment != null" >
+                and User_Department = #{userDepartment,jdbcType=VARCHAR}
+            </if>
+            <if test="userPosition != null" >
+                and User_position = #{userPosition,jdbcType=VARCHAR}
+            </if>
+            <if test="userEmail != null" >
+                and User_Email = #{userEmail,jdbcType=VARCHAR}
+            </if>
+            <if test="userPhone != null" >
+                and User_Phone = #{userPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="userStatus != null" >
+                and User_status = #{userStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="userCreateDate != null" >
+                and User_Create_Date = #{userCreateDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="userCreateBy != null" >
+                and User_Create_By = #{userCreateBy,jdbcType=VARCHAR}
+            </if>
+            <if test="userUpdateBy != null" >
+                and User_Update_By = #{userUpdateBy,jdbcType=VARCHAR}
+            </if>
+            <if test="userUpdateDate != null" >
+                and User_Update_Date = #{userUpdateDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="userIsUse != null" >
+                and User_Is_Use = #{userIsUse,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmpay.ozy.dao.IMenuDao" >
+
+    <resultMap id="BaseResultMap" type="com.cmpay.ozy.entity.MenuDO" >
+        <id column="Menu_ID" property="menuId" jdbcType="INTEGER" />
+        <result column="Menu_Parent_ID" property="menuParentId" jdbcType="VARCHAR" />
+        <result column="Menu_Name" property="menuName" jdbcType="VARCHAR" />
+        <result column="Menu_Type" property="menuType" jdbcType="VARCHAR" />
+        <result column="Menu_Sort" property="menuSort" jdbcType="INTEGER" />
+        <result column="Menu_Create_Time" property="menuCreateTime" jdbcType="TIMESTAMP" />
+        <result column="Menu_Create_By" property="menuCreateBy" jdbcType="VARCHAR" />
+        <result column="Menu_Update_By" property="menuUpdateBy" jdbcType="VARCHAR" />
+        <result column="Menu_Update_Date" property="menuUpdateDate" jdbcType="TIMESTAMP" />
+        <result column="Menu_Is_Use" property="menuIsUse" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        Menu_ID, Menu_Parent_ID, Menu_Name, Menu_Type, Menu_Sort, Menu_Create_Time, Menu_Create_By, 
+        Menu_Update_By, Menu_Update_Date, Menu_Is_Use
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tmenu
+        where Menu_ID = #{menuId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        delete from tmenu
+        where Menu_ID = #{menuId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.cmpay.ozy.entity.MenuDO" >
+        insert into tmenu
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="menuId != null" >
+                Menu_ID,
+            </if>
+            <if test="menuParentId != null" >
+                Menu_Parent_ID,
+            </if>
+            <if test="menuName != null" >
+                Menu_Name,
+            </if>
+            <if test="menuType != null" >
+                Menu_Type,
+            </if>
+            <if test="menuSort != null" >
+                Menu_Sort,
+            </if>
+            <if test="menuCreateTime != null" >
+                Menu_Create_Time,
+            </if>
+            <if test="menuCreateBy != null" >
+                Menu_Create_By,
+            </if>
+            <if test="menuUpdateBy != null" >
+                Menu_Update_By,
+            </if>
+            <if test="menuUpdateDate != null" >
+                Menu_Update_Date,
+            </if>
+            <if test="menuIsUse != null" >
+                Menu_Is_Use,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="menuId != null" >
+                #{menuId,jdbcType=INTEGER},
+            </if>
+            <if test="menuParentId != null" >
+                #{menuParentId,jdbcType=VARCHAR},
+            </if>
+            <if test="menuName != null" >
+                #{menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="menuType != null" >
+                #{menuType,jdbcType=VARCHAR},
+            </if>
+            <if test="menuSort != null" >
+                #{menuSort,jdbcType=INTEGER},
+            </if>
+            <if test="menuCreateTime != null" >
+                #{menuCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="menuCreateBy != null" >
+                #{menuCreateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUpdateBy != null" >
+                #{menuUpdateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUpdateDate != null" >
+                #{menuUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="menuIsUse != null" >
+                #{menuIsUse,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.cmpay.ozy.entity.MenuDO" >
+        update tmenu
+        <set >
+            <if test="menuParentId != null" >
+                Menu_Parent_ID = #{menuParentId,jdbcType=VARCHAR},
+            </if>
+            <if test="menuName != null" >
+                Menu_Name = #{menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="menuType != null" >
+                Menu_Type = #{menuType,jdbcType=VARCHAR},
+            </if>
+            <if test="menuSort != null" >
+                Menu_Sort = #{menuSort,jdbcType=INTEGER},
+            </if>
+            <if test="menuCreateTime != null" >
+                Menu_Create_Time = #{menuCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="menuCreateBy != null" >
+                Menu_Create_By = #{menuCreateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUpdateBy != null" >
+                Menu_Update_By = #{menuUpdateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUpdateDate != null" >
+                Menu_Update_Date = #{menuUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="menuIsUse != null" >
+                Menu_Is_Use = #{menuIsUse,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where Menu_ID = #{menuId,jdbcType=INTEGER}
+    </update>
+
+    <select id="find" resultMap="BaseResultMap" parameterType="com.cmpay.ozy.entity.MenuDO" >
+        select 
+        <include refid="Base_Column_List" />
+        from tmenu
+        <where >
+            <if test="menuId != null" >
+                and Menu_ID = #{menuId,jdbcType=INTEGER}
+            </if>
+            <if test="menuParentId != null" >
+                and Menu_Parent_ID = #{menuParentId,jdbcType=VARCHAR}
+            </if>
+            <if test="menuName != null" >
+                and Menu_Name = #{menuName,jdbcType=VARCHAR}
+            </if>
+            <if test="menuType != null" >
+                and Menu_Type = #{menuType,jdbcType=VARCHAR}
+            </if>
+            <if test="menuSort != null" >
+                and Menu_Sort = #{menuSort,jdbcType=INTEGER}
+            </if>
+            <if test="menuCreateTime != null" >
+                and Menu_Create_Time = #{menuCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="menuCreateBy != null" >
+                and Menu_Create_By = #{menuCreateBy,jdbcType=VARCHAR}
+            </if>
+            <if test="menuUpdateBy != null" >
+                and Menu_Update_By = #{menuUpdateBy,jdbcType=VARCHAR}
+            </if>
+            <if test="menuUpdateDate != null" >
+                and Menu_Update_Date = #{menuUpdateDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="menuIsUse != null" >
+                and Menu_Is_Use = #{menuIsUse,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

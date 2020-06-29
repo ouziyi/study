@@ -1,0 +1,12 @@
+dependencies {
+
+    //登录权限效验包
+    compile project(':service:demo-service')
+    compile project(':constant:demo-constant')
+    compile("com.cmpay:lemon-framework-web")
+    compile("com.cmpay:lemon-framework-starter-session")
+    compile("com.cmpay:lemon-framework-starter-security")
+    compile("com.cmpay:lemon-framework-starter-security-refresh")
+
+
+}

@@ -1,0 +1,8 @@
+### Send POST request with json body
+POST http://127.0.0.1:6006/v1/bui/login
+Content-Type: application/json
+
+{
+  "loginName": "lihuiquan",
+  "password": "121212"
+}

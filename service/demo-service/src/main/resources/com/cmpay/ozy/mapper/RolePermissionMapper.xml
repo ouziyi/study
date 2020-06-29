@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmpay.ozy.dao.IRolePermissionDao" >
+
+    <resultMap id="BaseResultMap" type="com.cmpay.ozy.entity.RolePermissionDO" >
+        <result column="Role_ID" property="roleId" jdbcType="INTEGER" />
+        <result column="Permission_ID" property="permissionId" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        Role_ID, Permission_ID
+    </sql>
+    <insert id="insert" parameterType="com.cmpay.ozy.entity.RolePermissionDO" >
+        insert into role_permission
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="roleId != null" >
+                Role_ID,
+            </if>
+            <if test="permissionId != null" >
+                Permission_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="roleId != null" >
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="permissionId != null" >
+                #{permissionId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="find" resultMap="BaseResultMap" parameterType="com.cmpay.ozy.entity.RolePermissionDO" >
+        select 
+        <include refid="Base_Column_List" />
+        from role_permission
+        <where >
+            <if test="roleId != null" >
+                and Role_ID = #{roleId,jdbcType=INTEGER}
+            </if>
+            <if test="permissionId != null" >
+                and Permission_ID = #{permissionId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+</mapper>

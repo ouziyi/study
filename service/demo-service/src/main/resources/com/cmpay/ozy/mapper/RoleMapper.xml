@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmpay.ozy.dao.IRoleDao" >
+
+    <resultMap id="BaseResultMap" type="com.cmpay.ozy.entity.RoleDO" >
+        <id column="Role_ID" property="roleId" jdbcType="INTEGER" />
+        <result column="Role_Name" property="roleName" jdbcType="VARCHAR" />
+        <result column="Role_Remark" property="roleRemark" jdbcType="VARCHAR" />
+        <result column="Role_Time" property="roleTime" jdbcType="TIMESTAMP" />
+        <result column="Role_Create_By" property="roleCreateBy" jdbcType="VARCHAR" />
+        <result column="Role_Update_By" property="roleUpdateBy" jdbcType="VARCHAR" />
+        <result column="Role_Update_Date" property="roleUpdateDate" jdbcType="TIMESTAMP" />
+        <result column="Role_Is_Use" property="roleIsUse" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        Role_ID, Role_Name, Role_Remark, Role_Time, Role_Create_By, Role_Update_By, Role_Update_Date, 
+        Role_Is_Use
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from trole
+        where Role_ID = #{roleId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        delete from trole
+        where Role_ID = #{roleId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.cmpay.ozy.entity.RoleDO" >
+        insert into trole
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="roleId != null" >
+                Role_ID,
+            </if>
+            <if test="roleName != null" >
+                Role_Name,
+            </if>
+            <if test="roleRemark != null" >
+                Role_Remark,
+            </if>
+            <if test="roleTime != null" >
+                Role_Time,
+            </if>
+            <if test="roleCreateBy != null" >
+                Role_Create_By,
+            </if>
+            <if test="roleUpdateBy != null" >
+                Role_Update_By,
+            </if>
+            <if test="roleUpdateDate != null" >
+                Role_Update_Date,
+            </if>
+            <if test="roleIsUse != null" >
+                Role_Is_Use,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="roleId != null" >
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="roleName != null" >
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleRemark != null" >
+                #{roleRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="roleTime != null" >
+                #{roleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="roleCreateBy != null" >
+                #{roleCreateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="roleUpdateBy != null" >
+                #{roleUpdateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="roleUpdateDate != null" >
+                #{roleUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="roleIsUse != null" >
+                #{roleIsUse,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.cmpay.ozy.entity.RoleDO" >
+        update trole
+        <set >
+            <if test="roleName != null" >
+                Role_Name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleRemark != null" >
+                Role_Remark = #{roleRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="roleTime != null" >
+                Role_Time = #{roleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="roleCreateBy != null" >
+                Role_Create_By = #{roleCreateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="roleUpdateBy != null" >
+                Role_Update_By = #{roleUpdateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="roleUpdateDate != null" >
+                Role_Update_Date = #{roleUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="roleIsUse != null" >
+                Role_Is_Use = #{roleIsUse,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where Role_ID = #{roleId,jdbcType=INTEGER}
+    </update>
+
+    <select id="find" resultMap="BaseResultMap" parameterType="com.cmpay.ozy.entity.RoleDO" >
+        select 
+        <include refid="Base_Column_List" />
+        from trole
+        <where >
+            <if test="roleId != null" >
+                and Role_ID = #{roleId,jdbcType=INTEGER}
+            </if>
+            <if test="roleName != null" >
+                and Role_Name = #{roleName,jdbcType=VARCHAR}
+            </if>
+            <if test="roleRemark != null" >
+                and Role_Remark = #{roleRemark,jdbcType=VARCHAR}
+            </if>
+            <if test="roleTime != null" >
+                and Role_Time = #{roleTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="roleCreateBy != null" >
+                and Role_Create_By = #{roleCreateBy,jdbcType=VARCHAR}
+            </if>
+            <if test="roleUpdateBy != null" >
+                and Role_Update_By = #{roleUpdateBy,jdbcType=VARCHAR}
+            </if>
+            <if test="roleUpdateDate != null" >
+                and Role_Update_Date = #{roleUpdateDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="roleIsUse != null" >
+                and Role_Is_Use = #{roleIsUse,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

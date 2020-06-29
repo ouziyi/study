@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmpay.ozy.dao.IMenuPermissionDao" >
+
+    <resultMap id="BaseResultMap" type="com.cmpay.ozy.entity.MenuPermissionDO" >
+        <result column="Menu_ID" property="menuId" jdbcType="INTEGER" />
+        <result column="Permission_ID" property="permissionId" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        Menu_ID, Permission_ID
+    </sql>
+    <insert id="insert" parameterType="com.cmpay.ozy.entity.MenuPermissionDO" >
+        insert into menu_permission
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="menuId != null" >
+                Menu_ID,
+            </if>
+            <if test="permissionId != null" >
+                Permission_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="menuId != null" >
+                #{menuId,jdbcType=INTEGER},
+            </if>
+            <if test="permissionId != null" >
+                #{permissionId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="find" resultMap="BaseResultMap" parameterType="com.cmpay.ozy.entity.MenuPermissionDO" >
+        select 
+        <include refid="Base_Column_List" />
+        from menu_permission
+        <where >
+            <if test="menuId != null" >
+                and Menu_ID = #{menuId,jdbcType=INTEGER}
+            </if>
+            <if test="permissionId != null" >
+                and Permission_ID = #{permissionId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+</mapper>
